@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>World Clocks</title>
+  <link rel="icon" type="ktm.jpg" src=url("\ktm.jpg")>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-image: url("\ktm.jpg");
+	  background-size: cover; 
+      color: white;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .clock {
+      background: #2c2c2c;
+      border-radius: 12px;
+      padding: 20px;
+      margin: 15px;
+      width: 220px;
+      text-align: center;
+      box-shadow: 0 0 15px rgba(0,0,0,0.4);
+    }
+    .location {
+      font-size: 1.3em;
+      margin-bottom: 10px;
+    }
+    .time {
+      font-size: 1.9em;
+      font-weight: bold;
+    }
+	.clockBox{
+	    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+	}
+  </style>
+</head>
+<body>
+<div class="clockBox">
+  <div class="clock">
+    <div class="location">Kolkata (India)</div>
+    <div class="time" id="kolkata"></div>
+  </div>
+
+  <div class="clock">
+    <div class="location">UTC</div>
+    <div class="time" id="utc"></div>
+  </div>
+
+  <div class="clock">
+    <div class="location">UK (London)</div>
+    <div class="time" id="london"></div>
+  </div>
+
+  <div class="clock">
+    <div class="location">Australia (Sydney)</div>
+    <div class="time" id="sydney"></div>
+  </div>
+
+  <div class="clock">
+    <div class="location">US (New York)</div>
+    <div class="time" id="newyork"></div>
+  </div>
+
+</div>
+
+
+  <script>
+    function updateClocks() {
+      const options = { hour: '2-digit', minute: '2-digit', second: '2-digit' };
+
+      document.getElementById("kolkata").textContent = new Date().toLocaleTimeString("en-IN", { ...options, timeZone: "Asia/Kolkata" });
+      document.getElementById("utc").textContent = new Date().toLocaleTimeString("en-GB", { ...options, timeZone: "UTC" });
+      document.getElementById("london").textContent = new Date().toLocaleTimeString("en-GB", { ...options, timeZone: "Europe/London" });
+      document.getElementById("sydney").textContent = new Date().toLocaleTimeString("en-AU", { ...options, timeZone: "Australia/Sydney" });
+      document.getElementById("newyork").textContent = new Date().toLocaleTimeString("en-US", { ...options, timeZone: "America/New_York" });
+    }
+
+    updateClocks();
+    setInterval(updateClocks, 1000);
+  </script>
+
+</body>
+</html>
